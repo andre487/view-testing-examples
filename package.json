@@ -12,5 +12,9 @@
   },
   "author": "Andrey Prokopyuk <andrey.prokopyuk@gmail.com> (http://andre.life)",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/Andre_487/client-testing-workshop#readme"
+  "homepage": "https://bitbucket.org/Andre_487/client-testing-workshop#readme",
+  "readme": "https://bitbucket.org/Andre_487/client-testing-workshop#readme",
+  "devDependencies": {
+    "bower": "^1.5.2"
+  }
 }

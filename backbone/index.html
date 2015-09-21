@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Name checker</title>
+        <link rel="stylesheet" href="/bower_components/normalize-css/normalize.css" />
+        <link rel="stylesheet" href="/backbone/app/checker.css" />
+    </head>
+    <body>
+        <h1>Есть ли пользователь в базе?</h1>
+
+        <div id="container" class="container"></div>
+
+        <div class="menu">
+            <a href="#!/">Start</a>
+            <a href="#!/success">Success</a>
+            <a href="#!/error">Error</a>
+        </div>
+
+        <link rel="import" href="/backbone/app/checker.templates.html" id="templates" />
+        <script src="/backbone/app/checker.utils.js"></script>
+
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/underscore/underscore.js"></script>
+        <script src="/bower_components/backbone/backbone.js"></script>
+
+        <script src="/backbone/app/checker.model.js"></script>
+        <script src="/backbone/app/checker.view.js"></script>
+        <script src="/backbone/app/checker.router.js"></script>
+
+        <script src="/backbone/app/checker.app.js"></script>
+    </body>
+</html>

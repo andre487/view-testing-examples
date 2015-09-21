@@ -1,0 +1,30 @@
+<!-- Строковые шаблоны для представления различных состояний -->
+
+<!-- Блок ввода имени пользователя -->
+<script type="text/template" id="start-template">
+    <div class="start">
+        <div class="userplace">
+            <label for="username">Имя пользователя: </label>
+            <input type="text" id="username" />
+        </div>
+        <div class="buttonplace">
+            <input type="button" value="Проверить" />
+        </div>
+    </div>
+</script>
+
+<!-- Блок удачи -->
+<script type="text/template" id="success-template">
+    <div class="success">
+        Пользователь <%= username %> найден.
+        <a href="#!/">Go back</a>
+    </div>
+</script>
+
+<!-- Блок ошибки -->
+<script type="text/template" id="error-template">
+    <div class="error">
+        Ошибка. Пользователь  <%= username %> не найден.
+        <a href="#!/">Go back</a>
+    </div>
+</script>
