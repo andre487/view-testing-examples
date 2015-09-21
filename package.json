@@ -1,0 +1,16 @@
+{
+  "name": "client-testing-workshop",
+  "version": "1.0.0",
+  "description": "Code for the workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Andre_487@bitbucket.org/Andre_487/client-testing-workshop.git"
+  },
+  "author": "Andrey Prokopyuk <andrey.prokopyuk@gmail.com> (http://andre.life)",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/Andre_487/client-testing-workshop#readme"
+}
