@@ -1,8 +1,8 @@
 {
-  "name": "client-testing-workshop",
+  "name": "view-testing-examples",
   "version": "1.0.0",
   "authors": [
-    "andre487@yandex-team.ru <andre487@yandex-team.ru>"
+    "Andrey Prokopyuk <andrey.prokopyuk@gmail.com> (http://andre.life)"
   ],
   "license": "MIT",
   "ignore": [
@@ -13,8 +13,10 @@
     "tests"
   ],
   "dependencies": {
+    "angular": "~1.4.6",
     "backbone": "~1.2.3",
     "chai": "~3.3.0",
+    "jquery": "~2.1.4",
     "mocha": "~2.3.3",
     "normalize-css": "~3.0.3",
     "sinon": "~1.16.1"

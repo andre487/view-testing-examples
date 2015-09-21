@@ -1,19 +1,19 @@
 {
-  "name": "client-testing-workshop",
+  "name": "view-testing-examples",
   "version": "1.0.0",
-  "description": "Code for the workshop",
-  "main": "index.js",
+  "license": "MIT",
+  "description": "Testing examples for view components in web frameworks",
   "scripts": {
+    "postinstall": "bower install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://Andre_487@bitbucket.org/Andre_487/client-testing-workshop.git"
+    "url": "git@github.com:Andre-487/view-testing-examples.git"
   },
   "author": "Andrey Prokopyuk <andrey.prokopyuk@gmail.com> (http://andre.life)",
-  "license": "MIT",
-  "homepage": "https://bitbucket.org/Andre_487/client-testing-workshop#readme",
-  "readme": "https://bitbucket.org/Andre_487/client-testing-workshop#readme",
+  "homepage": "https://github.com/Andre-487/view-testing-examples#readme",
+  "readme": "README.md",
   "devDependencies": {
     "bower": "^1.5.2"
   }
