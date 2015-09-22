@@ -1,15 +1,15 @@
 /**
  * @file
- * Связь компонентов
+ * Main JS file that connects all the components together
  */
 
 //
-// Инициализация модели
+// Init a model
 //
 var appState = new AppState();
 
 //
-// Инициализация роутера и связь с моделью
+// Init a router and connect it with the model
 //
 var router = new Router();
 appState.bind('change:state', function() {
@@ -24,7 +24,9 @@ appState.bind('change:state', function() {
 Backbone.history.start();
 
 //
-// Инициализация представления
+// Init view and connect it with the model and a DOM container
+// On that point we inject all the dependencies into controller.
+// DI makes its code much more testable
 //
 new CheckerView({
     el: $('#container'),

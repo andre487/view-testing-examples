@@ -1,12 +1,12 @@
 /**
  * @file
- * Набор BD-тестов на приложение Checker
+ * Application code's tests in BD style
  *
- * Проверяется:
- *  - инициализация,
- *  - рендеринг,
- *  - обработка событий,
- *  - взаимодействие с моделью
+ * We test the following things:
+ *  - initialization,
+ *  - rendering,
+ *  - event handling,
+ *  - interaction with the model
  */
 describe('checker.view', function() {
 
@@ -79,20 +79,20 @@ describe('checker.view', function() {
 
         it('should change model to success when name is valid', function() {
             new CheckerView({ el: container, model: model });
-            model.trigger('init'); // Рендерим стартовое состояние
+            model.trigger('init'); // Render start view
 
-            model.isValid = true; // Имя всегда валидное
-            container.find('input[type="button"]').click(); // Кликаем по кнопке
+            model.isValid = true; // Name is in DB
+            container.find('form').trigger('submit'); // Make fake form submit
 
             assert.equal(model.get('state'), 'success');
         });
 
         it('should change model to error when name is invalid', function() {
             new CheckerView({ el: container, model: model });
-            model.trigger('init'); // Рендерим стартовое состояние
+            model.trigger('init'); // Render start view
 
-            model.isValid = false; // Имя никогда не валидное
-            container.find('input[type="button"]').click(); // Кликаем по кнопке
+            model.isValid = false; // Name is not in DB
+            container.find('form').trigger('submit'); // Make fake form submit
 
             assert.equal(model.get('state'), 'error');
         });

@@ -1,20 +1,7 @@
-body {
-    padding: 0 8px;
-}
-
-.menu {
-    font-size: 0.7em;
-    margin-top: 20px;
-}
-
-.success {
-    color: green;
-}
-
-.error {
-    color: red;
-}
-
-.buttonplace {
-    margin-top: 5px;
+/**
+ * @file
+ * Application styles
+ */
+.result {
+    padding: 7px 10px;
 }

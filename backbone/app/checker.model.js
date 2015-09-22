@@ -1,11 +1,11 @@
 /**
- * Список пользователей (типа БД)
+ * Users list (something like DB)
  * @type {Array}
  */
 var users = ['Homer', 'Marge', 'Bart', 'Lisa', 'Maggy'];
 
 /**
- * Модель приложения, описывающая состояние
+ * Main model that contains state
  * @type {Backbone.Model}
  */
 var AppState = Backbone.Model.extend({

@@ -1,11 +1,11 @@
 /**
- * Представление приложения
+ * Application view
  * @type {Backbone.View}
  */
 var CheckerView = Backbone.View.extend({
-    model: null, // Сюда мы запишем модель
+    model: null, // Model will be here
 
-    el: $(), // Сюда мы запишем элемент-контейнер
+    el: $(), // DOM container will be here
 
     templates: {
         start: _.template(getTemplateString('start-template')),
@@ -14,11 +14,11 @@ var CheckerView = Backbone.View.extend({
     },
 
     events: {
-        'click input:button': 'check' // Обработчик клика на кнопке "Проверить"
+        'submit form': 'check' // The check event handler
     },
 
     initialize: function () {
-        // Проверка элементов, необходимых для работы
+        // Required elements check
         var requiredErrors = _.compact([
             !this.model && 'Model is required',
             this.$el.length == 0 && 'Element is required'
@@ -26,11 +26,13 @@ var CheckerView = Backbone.View.extend({
 
         if (requiredErrors.length) throw new Error(requiredErrors.join(', '));
 
-        // Подписка на события модели
+        // Add model events listener
         this.model.bind('init change', this.render, this);
     },
 
-    check: function () {
+    check: function (e) {
+        e.preventDefault();
+
         var username = this.$el.find('input:text').val();
         this.model.set({
             state: this.model.isNameValid(username) ? 'success' : 'error',

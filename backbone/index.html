@@ -1,20 +1,29 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Name checker</title>
-        <link rel="stylesheet" href="/bower_components/normalize-css/normalize.css" />
+
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="/backbone/app/checker.css" />
     </head>
     <body>
-        <h1>Есть ли пользователь в базе?</h1>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Have we this user in our DB?</h1>
+                </div>
+            </div>
 
-        <div id="container" class="container"></div>
+            <div class="row">
+                <div id="container" class="col-xs-10 container"></div>
 
-        <div class="menu">
-            <a href="#!/">Start</a>
-            <a href="#!/success">Success</a>
-            <a href="#!/error">Error</a>
+                <div class="col-xs-2">
+                    <a href="#!/">Start</a>
+                    <a href="#!/success">Success</a>
+                    <a href="#!/error">Error</a>
+                </div>
+            </div>
         </div>
 
         <link rel="import" href="/backbone/app/checker.templates.html" id="templates" />

@@ -1,5 +1,5 @@
 /**
- * Роутер приложения
+ * Router that connects URL and model (and state through model)
  * @type {Backbone.Router}
  */
 var Router = Backbone.Router.extend({
