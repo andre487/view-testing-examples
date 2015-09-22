@@ -5,6 +5,7 @@
   "description": "Testing examples for view components in web frameworks",
   "scripts": {
     "postinstall": "webdriver-manager update; bower install",
+    "http-server": "php -S localhost:8080",
     "webdriver": "webdriver-manager start --standalone"
   },
   "repository": {
