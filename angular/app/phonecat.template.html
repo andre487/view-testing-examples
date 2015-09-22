@@ -1,0 +1,32 @@
+<!-- Angular application template -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Phones catalog</h1>
+        </div>
+    </div>
+
+    <div class="row catalog">
+        <div class="col-xs-2">
+            <div class="control">Search: <input ng-model="query"></div>
+            <div class="control">
+                Sort by:
+                <select ng-model="orderProp">
+                    <option value="name">Alphabetical</option>
+                    <option value="age">Newest</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-xs-10">
+            <ul class="phones">
+                <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" class="thumbnail">
+                    <span>{{phone.name}}</span>
+
+                    <p>{{phone.snippet}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

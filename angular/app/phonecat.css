@@ -1,0 +1,11 @@
+/**
+ * @file
+ * Application styles
+ */
+.catalog {
+    margin-top: 15px;
+}
+
+.control + .control {
+    margin-top: 10px;
+}

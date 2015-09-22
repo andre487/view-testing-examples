@@ -4,8 +4,8 @@
   "license": "MIT",
   "description": "Testing examples for view components in web frameworks",
   "scripts": {
-    "postinstall": "bower install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "webdriver-manager update; bower install",
+    "webdriver": "webdriver-manager start --standalone"
   },
   "repository": {
     "type": "git",
@@ -15,6 +15,7 @@
   "homepage": "https://github.com/Andre-487/view-testing-examples#readme",
   "readme": "README.md",
   "devDependencies": {
-    "bower": "^1.5.2"
+    "bower": "^1.5.2",
+    "protractor": "^2.2.0"
   }
 }

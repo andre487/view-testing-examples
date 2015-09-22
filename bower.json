@@ -14,7 +14,10 @@
   ],
   "dependencies": {
     "angular": "~1.4.6",
+    "angular-mocks": "~1.4.6",
+    "angular-route": "~1.4.6",
     "backbone": "~1.2.3",
+    "bootstrap": "~3.3.5",
     "chai": "~3.3.0",
     "jquery": "~2.1.4",
     "mocha": "~2.3.3",

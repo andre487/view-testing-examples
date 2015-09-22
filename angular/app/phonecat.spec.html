@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- HTML enter point for running tests -->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Spec</title>
+        <link rel="stylesheet" href="/bower_components/mocha/mocha.css" />
+    </head>
+    <body>
+        <div id="mocha"></div>
+
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/mocha/mocha.js"></script>
+        <script src="/bower_components/chai/chai.js"></script>
+
+        <script src="/angular/app/phonecat.app.js"></script>
+        <script src="/angular/app/phonecat.controller.js"></script>
+
+        <script>
+            mocha.setup('bdd');
+            var assert = chai.assert;
+        </script>
+
+        <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
+        <script src="/bower_components/angular-route/angular-route.js"></script>
+        <script src="/angular/app/phonecat.spec.js"></script>
+
+        <script>mocha.run()</script>
+    </body>
+</html>
