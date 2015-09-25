@@ -2,9 +2,15 @@
     top to bottom direction
 
     skinparam class {
-        ArrowColor gray
-        BorderColor gray
+        BackgroundColor White
+        BorderColor #fd891c
+        ArrowColor #808285
     }
+    skinparam note {
+        BackgroundColor #ffcc00
+        BorderColor #ff6665
+    }
+    skinparam stereotypeCBackgroundColor #9d65a9
     skinparam shadowing false
 
     note "Maps URL to App state" as RouterNote
@@ -36,6 +42,6 @@
 
     Router --> "set state" AppStateModel
 
-    AppStateModel <-- "set username" View
+    AppStateModel <--> "get/set username, state" View
     AppStateModel ..> "listen to state change" View
 @enduml

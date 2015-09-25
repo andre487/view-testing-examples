@@ -2,12 +2,13 @@
     top to bottom direction
 
     skinparam component {
-        ArrowColor gray
-        BorderColor gray
+        BackgroundColor White
+        BorderColor #fd891c
+        ArrowColor #808285
     }
-    skinparam usecase {
-        ArrowColor gray
-        BorderColor gray
+    skinparam note {
+        BackgroundColor #ffcc00
+        BorderColor #ff6665
     }
     skinparam shadowing false
 
