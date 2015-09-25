@@ -1,0 +1,35 @@
+@startuml
+    top to bottom direction
+
+    skinparam component {
+        ArrowColor gray
+        BorderColor gray
+    }
+    skinparam usecase {
+        ArrowColor gray
+        BorderColor gray
+    }
+    skinparam shadowing false
+
+    note "Creates and connects\n all the components" as AppNote
+    note "Maps URL to\n Controller and Template\n that two-way bounded" as RouterNote
+    note "Business logic\n Manipulations with a Model" as ControllerNote
+    note "Representation logic\n Manipulations with a Model" as TemplateNote
+
+    component Application
+    component Router
+    component PhoneListCtrl
+    component catalogTemplate.html
+
+    Application .right. AppNote
+    Router .right. RouterNote
+    PhoneListCtrl .left. ControllerNote
+    catalogTemplate.html .right. TemplateNote
+
+
+    Application --> Router
+    Router --> PhoneListCtrl
+    Router --> catalogTemplate.html
+
+    PhoneListCtrl <..right..> catalogTemplate.html : two-way data binding
+@enduml

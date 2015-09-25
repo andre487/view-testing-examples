@@ -10,11 +10,13 @@
         <div id="mocha"></div>
 
         <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/angular-route/angular-route.js"></script>
+
         <script src="/bower_components/mocha/mocha.js"></script>
         <script src="/bower_components/chai/chai.js"></script>
 
-        <script src="/angular/app/phonecat.app.js"></script>
-        <script src="/angular/app/phonecat.controller.js"></script>
+        <script src="/angular/app/app.js"></script>
+        <script src="/angular/app/controllers.js"></script>
 
         <script>
             mocha.setup('bdd');
@@ -22,8 +24,7 @@
         </script>
 
         <script src="/bower_components/angular-mocks/angular-mocks.js"></script>
-        <script src="/bower_components/angular-route/angular-route.js"></script>
-        <script src="/angular/app/phonecat.spec.js"></script>
+        <script src="/angular/test_unit/view.spec.js"></script>
 
         <script>mocha.run()</script>
     </body>

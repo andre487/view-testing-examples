@@ -1,6 +1,6 @@
 /**
  * @file
- * Some twiks for better presentation
+ * Some tweaks for better presentation
  */
 var old = browser.driver.controlFlow().execute;
 
