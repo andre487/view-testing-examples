@@ -29,12 +29,12 @@ module.exports = React.createClass({
                 <h2>Add your comment</h2>
                 <form className='commentFormNode' onSubmit={this.handleSubmit}>
                     <div className='form-group'>
-                        <input ref='author' type='text' className='form-input form-input_author form-control' placeholder='Your name' />
+                        <input ref='author' type='text' className='formInput formInput:author form-control' placeholder='Your name' />
                     </div>
                     <div className='form-group'>
-                        <input ref='text' type='text' className='form-input form-input_comment form-control' placeholder='Say something...' />
+                        <input ref='text' type='text' className='formInput formInput:comment form-control' placeholder='Say something...' />
                     </div>
-                    <input type='submit' className='form-submit btn btn-primary' value='Post' />
+                    <input type='submit' className='btn btn-primary' value='Post' />
                 </form>
             </div>
         );

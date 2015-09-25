@@ -7,7 +7,7 @@ First stable version released in 2010.
 It has MVP architecture, some kind of MVC like pattern.
 
 ### Application
-Backbone application in this repo is inspired by [this post](http://habrahabr.ru/post/127049/).
+Application in this repo is inspired by [this post](http://habrahabr.ru/post/127049/).
 
 Architecture:
 
@@ -63,3 +63,27 @@ For unit tests we use:
   * [ngMock](https://docs.angularjs.org/api/ngMock) for separate Controller testing.
   
 For end to end tests we use [Protractor](http://www.protractortest.org/).
+
+## React
+First stable version released in 2013.
+React is just the UI or V in MVC.
+
+### Application
+Application in this repo is inspired by [React tutorial](http://facebook.github.io/react/docs/tutorial.html).
+
+It requires a building. For this purpose we use [WebPack](https://webpack.github.io/) and [Babel](https://babeljs.io/).
+
+Architecture:
+
+![Application architecture](https://rawgit.com/Andre-487/view-testing-examples/master/.uml/react-architecture.svg)
+
+### What we test in View?
+Some basic rendering and reaction to events.   
+
+### Testing tools
+React is tricky thing and we need a complex stack for its testing: 
+  * [Mocha](http://mochajs.org/) for test cases,
+  * [Babel](https://babeljs.io/) for JSX compilation,
+  * [jsdom](https://github.com/tmpvar/jsdom) for DOM emulation in Node.js environment,
+  * [React.addons.TestUtils](http://facebook.github.io/react/docs/test-utils.html) for rendering Virtual DOM and operations with it,
+  * [Chai](http://chaijs.com/) for assertions.

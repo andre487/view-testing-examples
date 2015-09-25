@@ -22,24 +22,24 @@ describe('CommentForm', function() {
     });
 
     it('should work render inputs for name and comment', function() {
-        var inputs = TestUtils.scryRenderedDOMComponentsWithClass(commentForm, 'form-input');
+        var inputs = TestUtils.scryRenderedDOMComponentsWithClass(commentForm, 'formInput');
 
         assert.lengthOf(inputs, 2);
 
         assert.ok(
-            inputs.some(function(elem) { return elem.props.className.indexOf('form-input_author') > -1 }),
+            inputs.some(function(elem) { return elem.props.className.indexOf('formInput:author') > -1 }),
             'No author input'
         );
 
         assert.ok(
-            inputs.some(function(elem) { return elem.props.className.indexOf('form-input_comment') > -1 }),
+            inputs.some(function(elem) { return elem.props.className.indexOf('formInput:comment') > -1 }),
             'No comment input'
         );
     });
 
     it('should call the callback on submit with filled fields', function() {
         var formNode = TestUtils.scryRenderedDOMComponentsWithClass(commentForm, 'commentFormNode');
-        var inputs = TestUtils.scryRenderedDOMComponentsWithClass(commentForm, 'form-input');
+        var inputs = TestUtils.scryRenderedDOMComponentsWithClass(commentForm, 'formInput');
 
         assert.lengthOf(formNode, 1);
         assert.lengthOf(inputs, 2);

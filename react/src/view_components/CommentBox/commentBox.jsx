@@ -32,7 +32,7 @@ module.exports = React.createClass({
                         <CommentList data={this.state.data} />
                     </div>
                 </div>
-                <div className='row commentFormContainer'>
+                <div className='commentFormContainer row'>
                     <div className='col-xs-12'>
                         <CommentForm onCommentSubmit={this.handleCommentSubmit} />
                     </div>

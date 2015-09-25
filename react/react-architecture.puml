@@ -1,0 +1,29 @@
+@startuml
+    top to bottom direction
+
+    skinparam component {
+        ArrowColor gray
+        BorderColor gray
+    }
+    skinparam usecase {
+        ArrowColor gray
+        BorderColor gray
+    }
+    skinparam shadowing false
+
+    note "Root component that handle\n comment addition" as CommentBoxNote
+    note "Call submit callback on DOM submit event\n and push a data to the root" as CommentFormNote
+
+    component CommentBox
+    component CommentList
+    component Comment
+    component CommentForm
+
+    CommentBox .right. CommentBoxNote
+    CommentForm .. CommentFormNote
+
+    CommentBox --> CommentList : render
+    CommentList --> Comment : render
+    CommentBox --> CommentForm : render
+    CommentForm ..> CommentBox : onCommentSubmit<Author, Text>
+@enduml
