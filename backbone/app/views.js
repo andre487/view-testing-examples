@@ -8,13 +8,13 @@ var CheckerView = Backbone.View.extend({
     el: $(), // DOM container will be here
 
     templates: {
-        start: _.template(getTemplateString('start-template')),
-        success: _.template(getTemplateString('success-template')),
-        error: _.template(getTemplateString('error-template'))
+        start: _.template(getTemplateString('start')),
+        success: _.template(getTemplateString('success')),
+        error: _.template(getTemplateString('error'))
     },
 
     events: {
-        'submit form': 'check' // The check event handler
+        'submit form': 'check' // Checking username on form submit
     },
 
     initialize: function () {

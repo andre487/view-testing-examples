@@ -1,8 +1,7 @@
 /**
  * @file
- * Main JS file that connects all the components together
+ * Main file in which all the components are connected
  */
-
 //
 // Init a model
 //

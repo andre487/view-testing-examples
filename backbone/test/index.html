@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- HTML enter point for running tests -->
+<!-- Specs entry point -->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -10,9 +10,6 @@
     <body>
         <div id="mocha"></div>
 
-        <link rel="import" href="/backbone/app/checker.templates.html" id="templates" />
-        <script src="/backbone/app/checker.utils.js"></script>
-
         <script src="/bower_components/jquery/dist/jquery.js"></script>
         <script src="/bower_components/underscore/underscore.js"></script>
         <script src="/bower_components/backbone/backbone.js"></script>
@@ -20,15 +17,20 @@
         <script src="/bower_components/mocha/mocha.js"></script>
         <script src="/bower_components/chai/chai.js"></script>
 
-        <script src="/backbone/app/checker.model.js"></script>
-        <script src="/backbone/app/checker.view.js"></script>
-        <script src="/backbone/app/checker.router.js"></script>
+        <link rel="import" href="/backbone/app/templates.html" id="templates" />
+        <script src="/backbone/utils/utils.js"></script>
+
+        <script src="/backbone/app/models.js"></script>
+        <script src="/backbone/app/views.js"></script>
+        <script src="/backbone/app/router.js"></script>
 
         <script>
             mocha.setup('bdd');
             var assert = chai.assert;
         </script>
-        <script src="/backbone/app/checker.spec.js"></script>
+
+        <script src="/backbone/test/view.spec.js"></script>
+
         <script>mocha.run()</script>
     </body>
 </html>

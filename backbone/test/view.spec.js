@@ -8,7 +8,7 @@
  *  - event handling,
  *  - interaction with the model
  */
-describe('checker.view', function() {
+describe('view', function() {
 
     describe('initialization', function() {
         it('should throw exception without model', function() {

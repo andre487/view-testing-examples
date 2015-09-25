@@ -1,11 +1,16 @@
 <!DOCTYPE html>
+<!-- Application entry point -->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Name checker</title>
 
         <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="/backbone/app/checker.css" />
+        <style>
+            .result {
+                padding: 7px 10px;
+            }
+        </style>
     </head>
     <body>
         <div class="container-fluid">
@@ -26,17 +31,17 @@
             </div>
         </div>
 
-        <link rel="import" href="/backbone/app/checker.templates.html" id="templates" />
-        <script src="/backbone/app/checker.utils.js"></script>
-
         <script src="/bower_components/jquery/dist/jquery.js"></script>
         <script src="/bower_components/underscore/underscore.js"></script>
         <script src="/bower_components/backbone/backbone.js"></script>
 
-        <script src="/backbone/app/checker.model.js"></script>
-        <script src="/backbone/app/checker.view.js"></script>
-        <script src="/backbone/app/checker.router.js"></script>
+        <link rel="import" href="/backbone/app/templates.html" id="templates" />
+        <script src="/backbone/utils/utils.js"></script>
 
-        <script src="/backbone/app/checker.app.js"></script>
+        <script src="/backbone/app/models.js"></script>
+        <script src="/backbone/app/views.js"></script>
+        <script src="/backbone/app/router.js"></script>
+
+        <script src="/backbone/main.js"></script>
     </body>
 </html>

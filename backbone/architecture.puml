@@ -1,0 +1,41 @@
+@startuml
+    top to bottom direction
+
+    skinparam class {
+        ArrowColor gray
+        BorderColor gray
+    }
+    skinparam shadowing false
+
+    note "Maps URL to App state" as RouterNote
+    note "Contains App state\nand user data" as AppStateModelNote
+    note "Choose current representation\ndependin on the state,\nsetup and interacting with DOM" as ViewNote
+
+    class Router
+    Router : -routes
+    Router : -gotoStart()
+    Router : -gotoSuccess()
+    Router : -gotoError()
+
+    class AppStateModel
+    AppStateModel : -state
+    AppStateModel : -userName
+    AppStateModel : -correctNamesList
+    AppStateModel : +set(fields)
+    AppStateModel : +get(field)
+    AppStateModel : +isNameValid(userName)
+
+    class View
+    View : -templates
+    View : +render()
+    View : -checkName()
+
+    Router .. RouterNote
+    AppStateModel .. AppStateModelNote
+    View .. ViewNote
+
+    Router --> "set state" AppStateModel
+
+    AppStateModel <-- "set username" View
+    AppStateModel ..> "listen to state change" View
+@enduml
