@@ -6,7 +6,8 @@
   "scripts": {
     "postinstall": "webdriver-manager update; bower install",
     "http-server": "php -S localhost:8080",
-    "webdriver": "webdriver-manager start --standalone"
+    "webdriver": "webdriver-manager start --standalone",
+    "compile-uml": "./.scripts/compile-uml.sh"
   },
   "repository": {
     "type": "git",
