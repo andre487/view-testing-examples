@@ -22,6 +22,7 @@
     "babel-loader": "^5.3.2",
     "bower": "^1.5.2",
     "chai": "^3.3.0",
+    "doctoc": "^0.15.0",
     "jsdom": "^3.1.2",
     "mocha": "^2.3.3",
     "protractor": "^2.2.0",

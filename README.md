@@ -2,6 +2,26 @@ View testing examples
 =====
 There are some examples of view components testing
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Backbone.js](#backbonejs)
+  - [Application](#application)
+  - [Architecture explanation](#architecture-explanation)
+  - [What we test in View?](#what-we-test-in-view)
+  - [Testing tools](#testing-tools)
+- [AngularJS](#angularjs)
+  - [Application](#application-1)
+  - [What we test in View?](#what-we-test-in-view-1)
+  - [Testing tools](#testing-tools-1)
+- [React](#react)
+  - [Application](#application-2)
+  - [What we test in View?](#what-we-test-in-view-2)
+  - [Testing tools](#testing-tools-2)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Backbone.js
 First stable version released in 2010. 
 It has MVP architecture, some kind of MVC like pattern.
