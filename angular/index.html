@@ -24,6 +24,20 @@
 
         <script src="/angular/app/app.js"></script>
         <script src="/angular/app/controllers.js"></script>
+
+        <script>
+            // Signals about location events to the parent frame if presented
+            var parent = window.parent;
+            if (parent !== window) {
+                window.addEventListener('load', function() {
+                    parent.postMessage({ type: 'angular:loaded', url: location.href }, '*');
+                });
+
+                window.addEventListener('hashchange', function() {
+                    parent.postMessage({ type: 'angular:locationChanged', url: location.href }, '*');
+                });
+            }
+        </script>
     </head>
 
     <body ng-view></body>

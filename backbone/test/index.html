@@ -32,5 +32,15 @@
         <script src="/backbone/test/view.spec.js"></script>
 
         <script>mocha.run()</script>
+
+        <script>
+            // Signals about location events to the parent frame if presented
+            var parent = window.parent;
+            if (parent !== window) {
+                window.addEventListener('load', function() {
+                    parent.postMessage({ type: 'backbone/test:loaded', url: location.href }, '*');
+                });
+            }
+        </script>
     </body>
 </html>

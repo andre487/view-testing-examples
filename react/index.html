@@ -15,5 +15,19 @@
     <body>
         <div id="container"></div>
         <script src="/react/build/bundle.js"></script>
+
+        <script>
+            // Signals about location events to the parent frame if presented
+            var parent = window.parent;
+            if (parent !== window) {
+                window.addEventListener('load', function() {
+                    parent.postMessage({ type: 'react:loaded', url: location.href }, '*');
+                });
+
+                window.addEventListener('hashchange', function() {
+                    parent.postMessage({ type: 'react:locationChanged', url: location.href }, '*');
+                });
+            }
+        </script>
     </body>
 </html>

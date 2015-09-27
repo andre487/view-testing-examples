@@ -27,5 +27,15 @@
         <script src="/angular/test_unit/view.spec.js"></script>
 
         <script>mocha.run()</script>
+
+        <script>
+            // Signals about location events to the parent frame if presented
+            var parent = window.parent;
+            if (parent !== window) {
+                window.addEventListener('load', function() {
+                    parent.postMessage({ type: 'angular/test_unit:loaded', url: location.href }, '*');
+                });
+            }
+        </script>
     </body>
 </html>
