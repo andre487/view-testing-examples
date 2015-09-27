@@ -48,6 +48,7 @@ describe('CommentForm', function() {
         TestUtils.Simulate.submit(formNode[0]);
 
         sinon.assert.calledOnce(callback);
+        sinon.assert.calledWith(callback, 'foo', 'foo');
     });
 
     it('should not call the callback on submit with empty fields', function() {
