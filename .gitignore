@@ -1,0 +1,7 @@
+.idea
+*.iml
+npm-debug.log
+node_modules
+bower_components
+react/build
+!react/build/.gitkeep
