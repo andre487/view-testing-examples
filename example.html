@@ -1,0 +1,401 @@
+<!DOCTYPE HTML>
+
+
+<html lang="ru">
+<head>
+	<title>Яндекс</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=792, user-scalable=no">
+	<link rel="stylesheet" href="themes/yandex/styles/screen.css" />
+	<!-- <link rel="stylesheet" href="themes/yandex/styles/prism-white.css" /> -->
+	<link rel="stylesheet" href="bower_components/prismjs/prism-twilight.css" />
+	
+</head>
+<body class="list">
+	<header class="caption">
+		<h1>Яндекс</h1>
+		<p>Андрей Прокопюк, <a href="http://yandex.ru/">Яндекс</a></p>
+
+	</header>
+
+	<section id="section" class="slide cover"><div><h2>Яндекс</h2>
+
+</div></section>
+<section class="slide shout" id="cover"><div><h2>Тестируемый дизайн клиентского кода</h2>
+
+<div class="s">
+    <div class="service">Поиск</div>
+</div>
+
+<div class="info">
+	<p class="author">Андрей Прокопюк, <br /> Разработчик интерфейсов</p>
+</div>
+
+</div></section>
+<section class="slide section" id="section-1"><div><h2>Верхний колонтитул</h2>
+
+<h3 id="section-2">Название раздела</h3>
+
+</div></section>
+<section class="slide" id="section-3"><div><h2>Заголовок</h2>
+
+<h3 id="section-4">Вводный текст (первый уровень текста)</h3>
+
+<ul>
+  <li>Второй уровень текста
+    <ul>
+      <li>Третий уровень текста (буллиты)</li>
+    </ul>
+
+    <ol>
+      <li>Четвертый уровень текста</li>
+    </ol>
+  </li>
+</ul>
+
+</div></section>
+<section class="slide" id="section-5"><div><h2>Заголовок</h2>
+
+<h3 id="section-6">Вводный текст (первый уровень текста)</h3>
+<p><img src="pictures/vertical-placeholder.png" alt="placeholder" class="right-image" /></p>
+
+<ul>
+  <li>Второй уровень текста
+    <ul>
+      <li>Третий уровень текста (буллиты)</li>
+      <li>Третий уровень текста (буллиты)</li>
+    </ul>
+
+    <ol>
+      <li>Четвертый уровень текста</li>
+    </ol>
+  </li>
+</ul>
+
+</div></section>
+<section class="slide with-big-quote" id="nbsp"><div><h2> </h2>
+<blockquote>
+  <p>Цитата</p>
+</blockquote>
+
+<p class="note">Текст</p>
+
+</div></section>
+<section class="slide" id="javascript"><div><h2>Пример подсветки кода на JavaScript</h2>
+
+<pre><code class="language-javascript">!function() {
+    var jar,
+        rstoreNames = /[^\w]/g,
+        storageInfo = window.storageInfo || window.webkitStorageInfo,
+        toString = "".toString;
+
+    jar = this.jar = function( name, storage ) {
+        return new jar.fn.init( name, storage );
+    };
+
+    jar.storages = [];
+    jar.instances = {};
+    jar.prefixes = {
+        storageInfo: storageInfo
+    };
+
+    jar.prototype = this.jar.fn = {
+        constructor: jar,
+
+        version: 0,
+
+        storages: [],
+        support: {},
+
+        types: [ "xml", "html", "javascript", "js", "css", "text", "json" ],
+
+        init: function( name, storage ) {
+
+            // Name of a object store must contain only alphabetical symbols or low dash
+            this.name = name ? name.replace( rstoreNames, "_" ) : "jar";
+            this.deferreds = {};
+
+            if ( !storage ) {
+                this.order = jar.order;
+            }
+
+            // TODO – add support for aliases
+            return this.setup( storage || this.storages );
+        },
+
+        // Setup for all storages
+        setup: function( storages ) {
+            this.storages = storages = storages.split ? storages.split(" ") : storages;
+
+            var storage,
+                self = this,
+                def = this.register(),
+                rejects = [],
+                defs = [];
+
+            this.stores = jar.instances[ this.name ] || {};
+
+            // Jar store meta-info in lc, if we don't have it – reject call
+            if ( !window.localStorage ) {
+                window.setTimeout(function() {
+                    def.reject();
+                });
+                return this;
+            }
+
+            // Initiate all storages that we can work with
+            for ( var i = 0, l = storages.length; i &lt; l; i++ ) {
+                storage = storages[ i ];
+
+                // This check needed if user explicitly specified storage that
+                // he wants to work with, whereas browser don't implement it
+                if ( jar.isUsed( storage ) ) {
+
+                    // If jar with the same name was created, do not try to re-create store
+                    if ( !this.stores[ storage ] ) {
+
+                        // Initiate storage
+                        defs.push( this[ storage ]( this.name, this ) );
+
+                        // Initiate meta-data for this storage
+                        this.log( storage );
+                    }
+
+                } else {
+                    rejects.push( storage );
+                }
+            }
+
+            if ( !this.order ) {
+                this.order = {};
+
+                for ( i = 0, l = this.types.length; i &lt; l; i++ ) {
+                    this.order[ this.types[ i ] ] = storages;
+                }
+            }
+
+            if ( rejects.length == storages.length ) {
+                window.setTimeout(function() {
+                    def.reject();
+                });
+
+            } else {
+                jar.when.apply( this, defs )
+                    .done(function() {
+                        jar.instances[ this.name ] = this.stores;
+
+                        window.setTimeout(function() {
+                            def.resolve([ self ]);
+                        });
+                    })
+                    .fail(function() {
+                        def.reject();
+                    });
+            }
+            return this;
+        }
+    };
+
+    jar.fn.init.prototype = jar.fn;
+
+    jar.has = function( base, name ) {
+        return !!jar.fn.meta( name, base.replace( rstoreNames, "_" ) );
+    };
+}.call( window );
+</code></pre>
+
+</div></section>
+<section class="slide code-with-text" id="section-7"><div><h2>Пример подсветки кода</h2>
+
+<p>Вводный текст</p>
+
+<pre><code class="language-javascript">var jar,
+    rstoreNames = /[^\w]/g,
+    storageInfo = window.storageInfo || window.webkitStorageInfo,
+    toString = "".toString;
+
+jar = this.jar = function( name, storage ) {
+    return new jar.fn.init( name, storage );
+};
+</code></pre>
+
+</div></section>
+<section class="slide big-code" id="nbsp-1"><div><h2> </h2>
+
+<pre><code class="language-javascript">!function() {
+    var jar,
+        rstoreNames = /[^\w]/g,
+        storageInfo = window.storageInfo || window.webkitStorageInfo,
+        toString = "".toString;
+
+    jar = this.jar = function( name, storage ) {
+        return new jar.fn.init( name, storage );
+    };
+
+    jar.storages = [];
+    jar.instances = {};
+    jar.prefixes = {
+        storageInfo: storageInfo
+    };
+}.call( window );
+</code></pre>
+
+</div></section>
+<section class="slide" id="latex"><div><h2>LaTeX</h2>
+
+<p>Библиотека для латекса довольно тяжелая, а нужна она в редких случаях.
+Поэтому она не включена в репу, ее нужно либо установить через bower либо иметь интернет.</p>
+
+<p>When $a \ne 0$, there are two solutions to (ax^2 + bx + c = 0) and they are
+<script type="math/tex">x = {-b \pm \sqrt{b^2-4ac} \over 2a}.</script></p>
+
+</div></section>
+<section class="slide images" id="section-8"><div><h2>Заголовок</h2>
+
+<p><img src="pictures/horizontal-placeholder.png" alt="" />
+<em>Текст</em></p>
+
+<p><img src="pictures/horizontal-placeholder.png" alt="" />
+<em>Текст</em></p>
+
+<p><img src="pictures/horizontal-placeholder.png" alt="" />
+<em>Текст</em></p>
+
+</div></section>
+<section class="slide images two" id="section-9"><div><h2>Заголовок</h2>
+
+<p><img src="pictures/horizontal-middle-placeholder.png" alt="" />
+<em>Текст</em></p>
+
+<p><img src="pictures/horizontal-middle-placeholder.png" alt="" />
+<em>Текст</em></p>
+
+</div></section>
+<section class="slide center" id="section-10"><div><h2>Заголовок</h2>
+
+<p><img src="pictures/horizontal-big-placeholder.png" alt="" class="tmp" /></p>
+
+</div></section>
+<section class="slide shout" id="picturescover-placeholderpng"><div><h2><img src="pictures/cover-placeholder.png" alt="" /></h2>
+
+</div></section>
+<section class="slide cover" id="pictureshorizontal-cover-placeholderpng"><div><h2><img src="pictures/horizontal-cover-placeholder.png" alt="" /></h2>
+
+</div></section>
+<section class="slide" id="section-11"><div><h2>Таблица</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Locavore</th>
+      <th scope="col">Umami</th>
+      <th scope="col">Helvetica</th>
+      <th scope="col">Vegan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Fingerstache</td>
+      <td>Kale</td>
+      <td>Chips</td>
+      <td>Keytar</td>
+    </tr>
+    <tr>
+      <td>Sriracha</td>
+      <td>Gluten-free</td>
+      <td>Ennui</td>
+      <td>Keffiyeh</td>
+    </tr>
+    <tr>
+      <td>Thundercats</td>
+      <td>Jean</td>
+      <td>Shorts</td>
+      <td>Biodiesel</td>
+    </tr>
+    <tr>
+      <td>Terry</td>
+      <td>Richardson</td>
+      <td>Swag</td>
+      <td>Blog</td>
+    </tr>
+  </tbody>
+</table>
+
+</div></section>
+<section class="slide" id="section-12"><div><h2>Таблица с дополнительным полем</h2>
+
+<table class="with-additional-line">
+  <thead>
+    <tr>
+      <th scope="col">Locavore</th>
+      <th scope="col">Umami</th>
+      <th scope="col">Helvetica</th>
+      <th scope="col">Vegan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Fingerstache</td>
+      <td>Kale</td>
+      <td>Chips</td>
+      <td>Keytar</td>
+    </tr>
+    <tr>
+      <td>Sriracha</td>
+      <td>Gluten-free</td>
+      <td>Ennui</td>
+      <td>Keffiyeh</td>
+    </tr>
+    <tr>
+      <td>Thundercats</td>
+      <td>Jean</td>
+      <td>Shorts</td>
+      <td>Biodiesel</td>
+    </tr>
+    <tr>
+      <td>Terry</td>
+      <td>Richardson</td>
+      <td>Swag</td>
+      <td>Blog</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Terry</td>
+      <td>Richardson</td>
+      <td>Swag</td>
+      <td>Blog</td>
+    </tr>
+  </tbody>
+</table>
+
+</div></section>
+<section class="slide shout" id="contacts"><div><h2>Контакты</h2>
+
+<div class="info">
+<p class="author">Андрей Прокопюк</p>
+<p class="position">Разработчик интерфейсов</p>
+
+    <div class="contacts">
+        <p class="contacts-left contacts-top phone">+7 (000) 000-00-00</p>
+        <p class="contacts-left mail">почта@yandex-team.ru</p>
+        <p class="contacts-right contacts-top twitter">@twitter</p>
+        <!-- <p class="contacts-right contacts-bottom vk">vk</p> -->
+        <p class="contacts-right facebook">facebook</p>
+    </div>
+</div>
+</div></section>
+
+	
+	<div class="progress"><div></div></div>
+	<script src="bower_components/shower-core/shower.min.js"></script>
+	<script src="bower_components/prismjs/prism.js"></script>
+	<script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	</script>
+	<script type="text/javascript"
+	  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+	<!-- Copyright © 2015 Андрей Прокопюк, Яндекс — http://yandex.ru/ -->
+</body>
+</html>

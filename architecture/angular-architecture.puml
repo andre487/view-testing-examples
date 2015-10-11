@@ -1,0 +1,36 @@
+@startuml
+    top to bottom direction
+
+    skinparam component {
+        BackgroundColor White
+        BorderColor #fd891c
+        ArrowColor #808285
+    }
+    skinparam note {
+        BackgroundColor #ffcc00
+        BorderColor #ff6665
+    }
+    skinparam shadowing false
+
+    note "Создает и связывает компоненты" as AppNote
+    note "Сопоставляет URL со связанными двусторонней связью\n Контроллером и Шаблоном" as RouterNote
+    note "Бизнес-логика,\n манипуляции с моделью" as ControllerNote
+    note "Логика представления,\n манипуляции с моделью" as TemplateNote
+
+    component Application
+    component Router
+    component PhoneListCtrl
+    component catalogTemplate.html
+
+    Application .right. AppNote
+    Router .right. RouterNote
+    PhoneListCtrl .. ControllerNote
+    catalogTemplate.html .. TemplateNote
+
+
+    Application --> Router
+    Router --> PhoneListCtrl
+    Router --> catalogTemplate.html
+
+    PhoneListCtrl <..right..> catalogTemplate.html : two-way data binding
+@enduml

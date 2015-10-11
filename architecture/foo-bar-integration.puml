@@ -1,0 +1,32 @@
+@startuml
+    left to right direction
+
+    skinparam component {
+        BackgroundColor White
+        BorderColor #fd891c
+        ArrowColor #808285
+    }
+    skinparam note {
+        BackgroundColor #ffcc00
+        BorderColor #ff6665
+    }
+    skinparam stereotypeCBackgroundColor #9d65a9
+    skinparam shadowing false
+
+
+    interface Input
+    interface Output
+
+    package Foobar {
+        component Foo
+
+        component Bar
+
+        Foo --> Bar
+        Foo <-- Bar
+    }
+
+    Input --> Foo
+    Bar --> Output
+
+@enduml

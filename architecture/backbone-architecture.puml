@@ -1,0 +1,31 @@
+@startuml
+    left to right direction
+
+    skinparam component {
+        BackgroundColor White
+        BorderColor #fd891c
+        ArrowColor #808285
+    }
+    skinparam note {
+        BackgroundColor #ffcc00
+        BorderColor #ff6665
+    }
+    skinparam stereotypeCBackgroundColor #9d65a9
+    skinparam shadowing false
+
+
+    component Router
+
+    component AppStateModel
+
+    component View
+
+    component Template.html
+
+    Router --> "set state" AppStateModel
+
+    AppStateModel <---> "get/set username, state" View
+    AppStateModel ...> "listen to state change" View
+    View --> "render" Template.html
+    View <.. "DOM events" Template.html
+@enduml

@@ -1,0 +1,695 @@
+<!DOCTYPE HTML>
+
+
+<html lang="ru">
+<head>
+	<title>Яндекс</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=792, user-scalable=no">
+	<link rel="stylesheet" href="themes/yandex/styles/screen.css" />
+	<!-- <link rel="stylesheet" href="themes/yandex/styles/prism-white.css" /> -->
+	<link rel="stylesheet" href="bower_components/prismjs/prism-twilight.css" />
+	
+</head>
+<body class="list">
+	<header class="caption">
+		<h1>Яндекс</h1>
+		<p>Андрей Прокопюк, <a href="http://yandex.ru/">Яндекс</a></p>
+
+	</header>
+
+	<section id="section" class="slide cover"><div><h2>Яндекс</h2>
+
+<style>
+.browser-head {
+    position: relative;
+    height: 27px;
+    background: #333;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+}
+
+.browser-controls {
+    position: absolute;
+    top: 9px;
+    left: 7px;
+    line-height: 0;
+}
+
+.control {
+    display: inline-block;
+    border-radius: 5px;
+    border: 5px solid;
+}
+
+.control + .control {
+    margin-left: 3px;
+}
+
+.control:nth-of-type(1) {
+    border-color: red;
+}
+
+.control:nth-of-type(2) {
+    border-color: #fd891c;
+}
+
+.control:nth-of-type(3) {
+    border-color: green;
+}
+
+.browser-address-input {
+    position: absolute;
+    top: 5px;
+    right: 35px;
+    width: 90%;
+    height: 18px;
+    background: white;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 16px;
+    box-sizing: border-box;
+    padding: 0 5px;
+    color: #666;
+}
+
+.browser-go-button {
+    font-family: monospace;
+    color: #666;
+    line-height: 10px;
+
+    position: absolute;
+    top: 8px;
+    right: 43px;
+
+    cursor: pointer;
+}
+
+.browser-ya {
+    position: absolute;
+    top: 5px;
+    right: 13px;
+    line-height: 18px;
+    font-size: 18px;
+    color: red;
+    cursor: pointer
+}
+
+.browser-window-frame {
+    box-sizing: border-box;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: #333;
+    border-radius: 0 0 5px 5px;
+}
+</style>
+
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    var frames = document.querySelectorAll('.browser-window-frame')
+    ;[].forEach.call(frames, attachToIframe)
+})
+
+function createBrowserFrame(path) {
+    return [
+        '<div class="browser-window">',
+            '<div class="browser-head">',
+                '<div class="browser-controls">',
+                    '<span class="control"></span>',
+                    '<span class="control"></span>',
+                    '<span class="control"></span>',
+                '</div>',
+                '<div class="browser-address-input"></div>',
+                '<div class="browser-go-button">&rarr;</div>',
+                '<div class="browser-ya">Я</div>',
+            '</div>',
+            '<iframe width="100%" height="430" ',
+                'class="browser-window-frame" ',
+                'data-path="${path}" ',
+                'src="data/home.html" ',
+                'data-src="http://localhost:8080/${path}">',
+            '</iframe>',
+        '</div>'
+    ].join('').replace(/\${path}/g, path)
+}
+
+function attachToIframe(frame) {
+    var browserWindow = frame.parentNode
+    var head = browserWindow.querySelector('.browser-address-input')
+    var msgPrefix = frame.dataset.path
+
+    var TYPE_LOADED = msgPrefix + ':loaded'
+    var TYPE_LOCATION_CHANGED = msgPrefix + ':locationChanged'
+
+    head.innerHTML = frame.dataset.src
+
+    browserWindow.querySelector('.browser-go-button')
+        .addEventListener('click', function(e) {
+            frame.src = frame.dataset.src
+        });
+
+    browserWindow.querySelector('.browser-ya')
+        .addEventListener('click', function(e) {
+            head.innerHTML = frame.src = 'http://andre.life'
+        });
+
+    window.addEventListener('message', function(message) {
+        switch (message.data.type) {
+            case TYPE_LOADED:
+            case TYPE_LOCATION_CHANGED:
+                head.innerHTML = message.data.url
+                break
+        }
+    })
+}
+</script>
+
+</div></section>
+<section class="slide shout" id="cover"><div><h2>Тестируемый дизайн клиентского кода</h2>
+
+<div class="s">
+    <div class="service">Поиск</div>
+</div>
+
+<div class="info">
+    <p class="author">Андрей Прокопюк, <br /> Разработчик интерфейсов</p>
+</div>
+
+</div></section>
+<section class="slide" id="the-most-interesting-developer-in-the-world"><div><h2>The most interesting developer in the world</h2>
+
+<p><img src="pictures/most-interesting-testability.jpg" height="500" style="transform: translate(280px, -50px)" /></p>
+
+</div></section>
+<section class="slide section" id="nbsp"><div><h2> </h2>
+
+<h3 id="section-1">Какие рассмотрим тесты?</h3>
+
+</div></section>
+<section class="slide" id="section-2"><div><h2>Юнит-тесты</h2>
+
+<p><img src="pictures/full-system.svg" width="100%" /></p>
+
+</div></section>
+<section class="slide" id="section-3"><div><h2>Юнит-тесты</h2>
+<p>Компонент в изоляции</p>
+
+<p><img src="pictures/foo-unit.svg" width="100%" /></p>
+
+</div></section>
+<section class="slide" id="section-4"><div><h2>Интеграционные тесты</h2>
+<p>Изолируем подсистему</p>
+
+<p><img src="pictures/foo-bar-integration.svg" width="100%" /></p>
+
+</div></section>
+<section class="slide section" id="nbsp-1"><div><h2> </h2>
+
+<h3 id="section-5">Черты тестируемого дизайна</h3>
+
+</div></section>
+<section class="slide" id="section-6"><div><h2>Тестируемый дизайн</h2>
+
+<p><img src="pictures/solid.jpg" alt="" class="right-image" /></p>
+
+<p>В первую очередь следует принципам SOLID</p>
+
+<p> </p>
+
+<p><span style="color: #ccc">Но не только это</span></p>
+
+</div></section>
+<section class="slide" id="section-7"><div><h2>Тестируемый дизайн</h2>
+
+<h3 id="bsbolid"><b>S</b>OLID</h3>
+
+<p><b style="font-size: 1.5em">S</b>ingle responsibility principle — принцип единственной ответственности</p>
+
+<pre><code class="language-javascript"> $ ls
+ Gruntfile.js   LICENSE        README.md      andre.life.iml build
+ node_modules   package.json   scripts        src
+ $
+</code></pre>
+
+</div></section>
+<section class="slide" id="section-8"><div><h2>Тестируемый дизайн</h2>
+
+<h3 id="sboblid">S<b>O</b>LID</h3>
+
+<p><b style="font-size: 1.5em">O</b>pen/closed principle — принцип открытости/закрытости</p>
+
+<p><img src="pictures/usb.jpg" alt="" /></p>
+
+</div></section>
+<section class="slide" id="soblbid"><div><h2>SO<b>L</b>ID</h2>
+
+<p><b style="font-size: 1.5em">L</b>iskov substitution principle — принцип подстановки Барбары Лисков</p>
+
+<p><img src="pictures/barbara-liskov.jpg" alt="" /></p>
+
+</div></section>
+<section class="slide" id="soblbid-1"><div><h2>SO<b>L</b>ID</h2>
+
+<p><b style="font-size: 1.5em">L</b>iskov substitution principle — принцип подстановки Барбары Лисков</p>
+
+<p><img src="pictures/lamp.png" alt="" /></p>
+
+</div></section>
+<section class="slide" id="solbibd"><div><h2>SOL<b>I</b>D</h2>
+
+<p><b style="font-size: 1.5em">I</b>nterface segregation principle — принцип разделения интерфейса</p>
+
+<pre><code class="language-javascript">class Tiger implements FourLegged, Yellow, BlackStrips, Mustaged, ...
+</code></pre>
+
+</div></section>
+<section class="slide" id="solibdb"><div><h2>SOLI<b>D</b></h2>
+
+<p><b style="font-size: 1.5em">D</b>ependency inversion principle — принцип инверсии зависимостей</p>
+
+<p><img src="pictures/dep-inv.jpg" alt="" /></p>
+
+</div></section>
+<section class="slide" id="javascript"><div><h2>Тестируемый дизайн в JavaScript</h2>
+
+<h3 id="sos-stylecolor-999lisd">SO<s style="color: #999">LI</s>D</h3>
+
+<ul>
+  <li>Single responsibility principle <span style="color: #666">— принцип единственной ответственности</span></li>
+  <li>Open/closed principle <span style="color: #666">— принцип открытости/закрытости</span></li>
+  <li>
+    <s style="color: #999">Liskov substitution principle &mdash; принцип подстановки Барбары Лисков</s>
+  </li>
+  <li>
+    <s style="color: #999">Interface segregation principle &mdash; принцип разделения интерфейса</s>
+  </li>
+  <li>Dependency inversion principle <span style="color: #666">— принцип инверсии зависимостей</span></li>
+</ul>
+
+</div></section>
+<section class="slide" id="javascript-1"><div><h2>Тестируемый дизайн в JavaScript</h2>
+
+<h3 id="sodjs">SOD.js</h3>
+
+<ul>
+  <li>Single responsibility principle <span style="color: #666">— принцип единственной ответственности</span></li>
+  <li>Open/closed principle <span style="color: #666">— принцип открытости/закрытости</span></li>
+  <li>Dependency inversion principle <span style="color: #666">— принцип инверсии зависимостей</span></li>
+</ul>
+
+</div></section>
+<section class="slide section" id="nbsp-2"><div><h2> </h2>
+
+<h3 id="section-9">Иллюстрации</h3>
+
+</div></section>
+<section class="slide section" id="nbsp-3"><div><h2> </h2>
+
+<h3 id="single-responsibility-principle">Single responsibility principle</h3>
+
+</div></section>
+<section class="slide" id="single-responsibility-principle-1"><div><h2>Single responsibility principle</h2>
+
+<p>Код библиотечного метода</p>
+
+<div style="height: 400px; overflow: scroll">
+    <img src="pictures/b-slider-original.png" />
+</div>
+
+</div></section>
+<section class="slide" id="single-responsibility-principle-2"><div><h2>Single responsibility principle</h2>
+
+<p>Расширяем на проекте, вместо <code>b-icon</code> — <code>image</code>. Найдите 2 отличия</p>
+
+<div style="height: 400px; overflow: scroll">
+    <img src="pictures/b-slider-image.png" />
+</div>
+
+</div></section>
+<section class="slide" id="single-responsibility-principle-3"><div><h2>Single responsibility principle</h2>
+
+<p>Как поправить дело? Писать короткие методы с <b>единственным</b> действием</p>
+
+<pre><code class="language-javascript">_getImages: function () { // Легко переопределить на image
+    return this.findBlocksInside('b-icon')
+},
+
+_checkImageCompleted: function (image) {
+    var promise = $.Deferred()
+    image.bindTo('load error', promise.resolve)
+    return promise
+},
+
+_checkAllImagesCompleted: function (images) { // Легко тестировать
+    return $.when.apply($, images.map(this._checkImageComplete))
+}
+</code></pre>
+
+</div></section>
+<section class="slide section" id="nbsp-4"><div><h2> </h2>
+
+<h3 id="openclosed-principle">Open/closed principle</h3>
+
+</div></section>
+<section class="slide" id="openclosed-principle-1"><div><h2>Open/closed principle</h2>
+
+<ul>
+  <li>components-common
+    <ul>
+      <li>foo-base
+        <ul>
+          <li>foo-base.js</li>
+          <li>foo-base.test.js <span style="color: green">✓</span></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</div></section>
+<section class="slide" id="openclosed-principle-2"><div><h2>Open/closed principle</h2>
+
+<ul>
+  <li>components-common
+    <ul>
+      <li>foo-base
+        <ul>
+          <li>foo-base.js</li>
+          <li>foo-base.test.js <span style="color: red">✗</span></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>components-touch
+    <ul>
+      <li>foo-touch
+        <ul>
+          <li>foo-touch.js</li>
+          <li>foo-touch.test.js <span style="color: green">✓</span></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Изменили поведение базового компонента</p>
+
+</div></section>
+<section class="slide" id="openclosed-principle-3"><div><h2>Open/closed principle</h2>
+
+<p>Как так получилось?</p>
+
+<pre><code class="language-javascript">/* components-common/foo-base.js */
+export default {
+  aggregate(list) { return list.reduce(this.op, this.start()) },
+
+  op(x, y) { return x + y },
+  start() { return 0 }
+}
+
+/* components-touch/foo-touch.js */
+import foo from 'foo-base'
+
+foo.op = (x, y) =&gt; x * y
+foo.start = () =&gt; 1
+
+export default foo
+</code></pre>
+
+</div></section>
+<section class="slide" id="openclosed-principle-4"><div><h2>Open/closed principle</h2>
+
+<p>Как поправить дело? Вариант 1, <strong>наследование</strong></p>
+
+<pre><code class="language-javascript">/* components-common/foo-base.js */
+export default class FooBase {
+  aggregate(list) { return list.reduce(this.op, this.start()) }
+
+  op(x, y) { return x + y }
+  start() { return 0 }
+}
+
+/* components-touch/foo-touch.js */
+import FooBase from 'foo-base'
+
+export default class FooTouch extends FooBase {
+  op(x, y) { return x * y }
+
+  start() { return 1 }
+}
+</code></pre>
+
+</div></section>
+<section class="slide" id="openclosed-principle-5"><div><h2>Open/closed principle</h2>
+
+<p>Как поправить дело? Вариант 2, <strong>копирование</strong></p>
+
+<pre><code class="language-javascript">/* components-common/foo-base.js */
+module.exports = {
+ aggregate: function (list) { return list.reduce(this.op, this.start()) },
+
+ op: function (x, y) { return x + y },
+ start: function () { return 0 }
+}
+
+/* components-touch/foo-touch.js */
+var FooBase = require('foo-base')
+
+module.exports = $.extend({}, FooBase, {
+  op: function (x, y) { return x * y },
+
+  start: function () { return 1 }
+})
+</code></pre>
+
+</div></section>
+<section class="slide section" id="nbsp-5"><div><h2> </h2>
+
+<h3 id="dependency-inversion-principle">Dependency inversion principle</h3>
+
+</div></section>
+<section class="slide" id="dependency-inversion-principle-1"><div><h2>Dependency inversion principle</h2>
+
+<pre><code class="language-javascript">class Controller() {
+    constructor({ Model, View }) {
+        this.model = new Model()
+        this.view = new View()
+
+        this.bindEvents()
+    }
+
+    bindEvents() {
+        this.view.on('formSubmitted', this.model.setData)
+        this.model.on('change', this.view.render)
+    }
+
+    onMounted() {
+        this.view.render()
+    }
+}
+</code></pre>
+
+</div></section>
+<section class="slide" id="dependency-inversion-principle-2"><div><h2>Dependency inversion principle</h2>
+
+<pre><code class="language-javascript">describe('Controller', function () {
+    beforeEach(function () {
+        this.params = {}
+
+        this.params.Model = FakeModel.createClass()
+        this.params.View = FakeView.createClass()
+    })
+
+    it('should render view when data changed', function () {
+        new Controller(this.params)
+
+        this.params.Model.emit('change')
+
+        assert.calledOnce(this.params.View.render)
+    })
+})
+</code></pre>
+
+</div></section>
+<section class="slide section" id="nbsp-6"><div><h2> </h2>
+
+<h3 id="section-10">Промежуточные выводы</h3>
+
+</div></section>
+<section class="slide" id="solid"><div><h2>Нужно следовать SOLID</h2>
+
+<p><img src="pictures/doge.png" alt="" class="right-image" /></p>
+
+<ul>
+  <li>Wow single responsibility</li>
+  <li>So open/closed</li>
+  <li>Much dependency inversion</li>
+</ul>
+
+</div></section>
+<section class="slide section" id="nbsp-7"><div><h2> </h2>
+
+<h3 id="backbonejs">Пример хороших практик, Backbone.js</h3>
+
+</div></section>
+<section class="slide" id="section-11"><div><h2>Наше приложение</h2>
+<div id="backboneBrowser"></div>
+<script>
+    document.getElementById('backboneBrowser').innerHTML = createBrowserFrame('backbone')
+</script>
+
+<!--
+See: https://github.com/Andre-487/view-testing-examples/backbone
+You need to launch dev server: npm run http-server
+-->
+
+</div></section>
+<section class="slide" id="section-12"><div><h2>Архитектура</h2>
+
+<p><img src="pictures/backbone-architecture.svg" width="100%" height="400" /></p>
+
+</div></section>
+<section class="slide" id="section-13"><div><h2>Архитектура</h2>
+
+<p><img src="pictures/solid.jpg" alt="" class="right-image" /></p>
+
+<ul>
+  <li>Router <span style="color: #666">URL → состояние</span></li>
+  <li>Model <span style="color: #666">Данные</span></li>
+  <li>View <span style="color: #666">Логика</span></li>
+  <li>Template <span style="color: #666">Отображение</span></li>
+</ul>
+
+</div></section>
+<section class="slide" id="section-14"><div><h2>Взглянем на код</h2>
+
+<p><img src="pictures/source-code.jpg" height="450" /></p>
+
+</div></section>
+<section class="slide" id="section-15"><div><h2>Запустим тесты</h2>
+<div id="backboneTestBrowser"></div>
+<script>
+    document.getElementById('backboneTestBrowser').innerHTML = createBrowserFrame('backbone/test')
+</script>
+
+<!--
+See: https://github.com/Andre-487/view-testing-examples/backbone/test
+You need to launch dev server: npm run http-server
+-->
+
+</div></section>
+<section class="slide section" id="nbsp-8"><div><h2> </h2>
+
+<h3 id="section-16">Итоги</h3>
+
+</div></section>
+<section class="slide" id="section-17"><div><h2>Итоги</h2>
+
+<p><img src="pictures/batman.png" alt="" class="right-image" /></p>
+
+<p>Чтобы писать много хороших и надежных тестов —</p>
+
+<p>нужно придать коду приложения</p>
+
+<p><b style="font-size: 1.5em">тестируемый дизайн</b></p>
+
+</div></section>
+<section class="slide" id="section-18"><div><h2>А для этого</h2>
+
+<p><img src="pictures/solid.jpg" alt="" class="right-image" /></p>
+
+<p><span id="solid-list-trigger" style="font-size: 100px; color: red; font-weight: bold">SOLID</span></p>
+
+<div id="solid-list" style="width: 500px"></div>
+
+<script>
+    var solidList = document.getElementById('solid-list')
+    var solidListTrigger = document.getElementById('solid-list-trigger')
+
+    solidListTrigger.onclick = function() {
+        solidListTrigger.onclick = null
+
+        var c = 0
+        var solidListIntId = setInterval(function() {
+            solidList.innerHTML += 'SOLID '
+
+            if (c++ == 55) clearInterval(solidListIntId)
+        }, 500)
+    }
+</script>
+
+</div></section>
+<section class="slide" id="the-end"><div><h2>The End</h2>
+
+<p>Полный код примеров:</p>
+
+<ul>
+  <li>https://github.com/Andre-487/view-testing-examples</li>
+  <li>https://clck.ru/9arrJ</li>
+  <li><img src="pictures/gh-repo-qr.png" alt="" /></li>
+</ul>
+
+<p>Вопросы?</p>
+
+<p> </p>
+
+<p><span>Нужно следовать <span id="solidContainer">SOLID</span></span></p>
+
+<script>
+var solidContainer = document.getElementById('solidContainer')
+solidContainer.onclick = function () {
+    solidContainer.onclick = null
+
+    var direction = 0
+
+    setTimeout(function() {
+        solidContainer.style.fontSize = '2em'
+    }, 10000)
+
+    setTimeout(function() {
+        var colors = ['red', 'green', 'blue', 'orange', 'purple']
+        setInterval(run, 200)
+
+        function run() {
+            if (direction) {
+                colors.unshift(colors.pop())
+            } else {
+                colors.push(colors.shift())
+            }
+            solidContainer.innerHTML = colors.map(function(c, i) {
+                return '<span style="color: {c}">{l}</span>'.replace('{c}', c).replace('{l}', 'SOLID'[i])
+            }).join('')
+        }
+    }, 20000)
+
+    var fontInterval = setInterval(function() {
+        var fontSize = parseInt(solidContainer.style.fontSize)
+
+        if (fontSize == 5) clearInterval(fontInterval)
+
+        solidContainer.style.fontSize = (fontSize + 1) + 'em'
+    }, 30000)
+
+    setInterval(function() {
+        if (Math.random() < 0.3) {
+            direction = ~direction
+        }
+    }, 1000)
+}
+</script>
+
+</div></section>
+
+	
+	<div class="progress"><div></div></div>
+	<script src="bower_components/shower-core/shower.min.js"></script>
+	<script src="bower_components/prismjs/prism.js"></script>
+	<script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	</script>
+	<script type="text/javascript"
+	  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+	<!-- Copyright © 2015 Андрей Прокопюк, Яндекс — http://yandex.ru/ -->
+</body>
+</html>
