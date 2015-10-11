@@ -2,6 +2,8 @@ View testing examples
 =====
 There are some examples of view components testing
 
+[Presentation for Yandex frontend developer school](http://andre-487.github.io/view-testing-examples)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
